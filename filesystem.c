@@ -251,17 +251,6 @@ int truncate(fd_t *fd, int offset) {
 			prev = curr;
 			written--;
 		}
-		/*while (written != blocks) {
-			curr = find_free_block();
-			printf("curr %d \n", curr);
-			if (curr == E_NFB) {
-				free_blocks(fd);
-				return E_NFB;
-			}
-			fs.next[prev] = curr;
-			prev = curr;
-			written++;
-		}*/
 	}
 	bytes_in_last_block = offset % BLOCK_SIZE;
 	if (bytes_in_last_block != 0 && blocks != 0) {
@@ -303,7 +292,6 @@ char *get_filename(char *path) {
 int mkfile(const char *path, int type) {
 	int i = 0;
 	int fd = 0, size = 0, id = -1;
-	//char *p = NULL, *ptr = path;
 	char *directory;
 	char *filename;
 	int *data, *mdata;
